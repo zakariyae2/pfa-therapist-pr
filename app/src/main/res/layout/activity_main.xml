@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lin1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/forest_green"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Home"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Hello Doctor"
+            android:textSize="25dp"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="How we can help you today"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/lin2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/bord1"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/border">
+
+                <ImageButton
+                    android:id="@+id/ac1"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ac1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/ac1"
+                    android:gravity="center"
+                    android:text="My patients"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bord2"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/border" >
+
+                <ImageButton
+                    android:id="@+id/ac2"
+                    android:layout_width="87dp"
+                    android:layout_height="76dp"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/adac" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/ac2"
+                    android:gravity="center"
+                    android:text="Patients\nRequest"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/bord3"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border" >
+
+                <ImageButton
+                    android:layout_width="67dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/profile"
+                    android:id="@+id/prof"
+                    android:layout_marginLeft="31dp"
+                    android:layout_marginTop="20dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/prof"
+                    android:text="Profile"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bord4"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border" >
+
+                <ImageButton
+                    android:id="@+id/appo"
+                    android:layout_width="76dp"
+                    android:layout_height="63dp"
+                    android:background="@drawable/appointment"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp"
+                    android:layout_below="@+id/appo"
+                    android:gravity="center"
+                    android:text="Appointement"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/bord5"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border" >
+
+                <ImageButton
+                    android:id="@+id/calen"
+                    android:layout_width="78dp"
+                    android:layout_height="66dp"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="17dp"
+                    android:background="@drawable/calnder" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/calen"
+                    android:text="My calendar"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:id="@+id/btnout1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/red"
+                android:text="signout"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
