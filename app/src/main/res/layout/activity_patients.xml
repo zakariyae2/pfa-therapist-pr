@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Patients"
+    android:background="@color/green">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello Client"
+                android:textSize="25dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10sp"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How can we help you today"
+                android:textSize="25dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50sp"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/bg1"
+            android:layout_gravity="center">
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:padding="15dp"
+            android:layout_margin="2dp"
+            android:useDefaultMargins="true"
+            android:alignmentMode="alignMargins"
+            android:layout_gravity="center">
+            <!-- Card for Appointment -->
+            <RelativeLayout
+                android:id="@+id/cardAppointment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:layout_gravity="center">
+                <!-- Add your appointment card contents here -->
+                <!-- Example: TextView for title, ImageView for icon, etc. -->
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ac1"
+                    android:layout_gravity="center"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Appointment"
+                    android:layout_gravity="center"
+                    />
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- Card for Doctors -->
+            <RelativeLayout
+                android:id="@+id/cardDoctors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:layout_gravity="center">
+
+                <!-- Add your doctors card contents here -->
+                <!-- Example: TextView for title, ImageView for icon, etc. -->
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">
+                   >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ac1"
+                        android:layout_gravity="center"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Doctors"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+            <!-- Card for Profile -->
+            <RelativeLayout
+                android:id="@+id/cardProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:layout_gravity="center">
+                <!-- Add your appointment card contents here -->
+                <!-- Example: TextView for title, ImageView for icon, etc. -->
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ac1"
+                        android:layout_gravity="center"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- Card for Blog -->
+            <RelativeLayout
+                android:id="@+id/cardBlog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:layout_gravity="center">
+                <!-- Add your appointment card contents here -->
+                <!-- Example: TextView for title, ImageView for icon, etc. -->
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ac1"
+                        android:layout_gravity="center"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blog"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cardTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:layout_gravity="center">
+                <!-- Add your appointment card contents here -->
+                <!-- Example: TextView for title, ImageView for icon, etc. -->
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center">>
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ac1"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blog"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+        </GridLayout>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:id="@+id/btnout1"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/red"
+            android:text="signout"
+            android:textColor="@color/white"
+            android:textSize="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
