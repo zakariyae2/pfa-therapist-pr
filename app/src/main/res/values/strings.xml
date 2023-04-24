@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">pr_pfa2</string>
+    <string-array name="moroccan_cities">
+        <item>Casablanca</item>
+        <item>Rabat</item>
+        <item>Fes</item>
+        <item>Marrakech</item>
+        <item>Tangier</item>
+        <item>Agadir</item>
+        <item>Meknes</item>
+        <item>Oujda</item>
+        <item>Kenitra</item>
+        <item>Tetouan</item>
+    </string-array>
 </resources>
