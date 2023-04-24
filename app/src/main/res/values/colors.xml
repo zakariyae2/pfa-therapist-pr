@@ -14,4 +14,5 @@
     <color name="background">#EEECEC</color>
     <color name="silver">#C0C0C0</color>
     <color name="primary">#30DB39</color>
+    <color name="blue">#0000FF</color>
 </resources>

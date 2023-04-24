@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -16,8 +17,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import android.widget.RelativeLayout;
+
+
 public class MainActivity extends AppCompatActivity {
-    ImageButton btni1;
+    RelativeLayout R1;
 
     Button logoutButton;
     TextView helloMSG;
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         currentUser = fAuth.getCurrentUser();
@@ -39,12 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
         btni1=(ImageButton) findViewById(R.id.ac1);
         btni1.setOnClickListener(new View.OnClickListener() {
+
+        R1=(RelativeLayout) findViewById(R.id.bord1);
+        R1.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent act1=new Intent(MainActivity.this,My_patients.class);
                 startActivity(act1);
             }
         });
+
 
 
 
