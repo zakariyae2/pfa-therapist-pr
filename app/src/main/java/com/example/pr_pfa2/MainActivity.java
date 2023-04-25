@@ -5,73 +5,88 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import android.widget.RelativeLayout;
+
 
 public class MainActivity extends AppCompatActivity {
     RelativeLayout R1;
-    RelativeLayout R4;
-    RelativeLayout R5;
-    ImageButton im1;
-    ImageButton im4;
-    ImageButton im5;
+
+    Button logoutButton;
+    TextView helloMSG;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    FirebaseUser currentUser;
+    String fullname;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+        currentUser = fAuth.getCurrentUser();
+
+
+        btni1=(ImageButton) findViewById(R.id.ac1);
+        btni1.setOnClickListener(new View.OnClickListener() {
+
         R1=(RelativeLayout) findViewById(R.id.bord1);
-        R4=(RelativeLayout) findViewById(R.id.bord4);
-        R5=(RelativeLayout) findViewById(R.id.bord5);
-        im1 =(ImageButton)  findViewById(R.id.ac1);
-        im4 =(ImageButton)  findViewById(R.id.appo);
-        im5=(ImageButton) findViewById(R.id.calen);
-        pages();
-    }
-
-
-
-    public void pages(){
         R1.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent act1=new Intent(MainActivity.this,My_patients.class);
                 startActivity(act1);
             }
         });
-        R4.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+        DocumentReference df = fStore.collection("Users").document(currentUser.getUid());
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onClick(View v) {
-                Intent act4=new Intent(MainActivity.this,Appointement.class);
-                startActivity(act4);
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                fullname = documentSnapshot.getString("fullName");
+                helloMSG = findViewById(R.id.txt1);
+                helloMSG.setText("Hello " + fullname.toUpperCase());
+
             }
         });
-        R5.setOnClickListener(new View.OnClickListener() {
+
+
+        logoutButton = findViewById(R.id.btnout1);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent act5=new Intent(MainActivity.this,clendar.class);
-                startActivity(act5);
+
+                FirebaseAuth.getInstance().signOut();
+
+                Intent i = new Intent(v.getContext(), Login.class);
+                startActivity(i);
+                finish();
+
             }
         });
-        im1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent imb1=new Intent(MainActivity.this,My_patients.class);
-                startActivity(imb1);
-            }
-        });
-        im4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent imb4=new Intent(MainActivity.this,Appointement.class);
-                startActivity(imb4);
-            }
-        });
-        im5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent imb5=new Intent(MainActivity.this,clendar.class);
-                startActivity(imb5);
-            }
-        });
+
+
+
+
     }
 }
