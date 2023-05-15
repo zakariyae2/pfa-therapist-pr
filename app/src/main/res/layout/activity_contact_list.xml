@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:alignmentMode="alignMargins"
+    android:columnCount="1"
+    android:rowCount="3"
+    android:useDefaultMargins="true"
+    android:background="@color/white">
+
+
+        <ImageView
+            android:id="@+id/backCLIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contactlistRV"
+        android:layout_width="match_parent"
+        android:layout_height="602dp"
+        android:layout_margin="10dp"
+        android:background="@color/silver"
+        />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavViewClientContactList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        android:background="@color/white"
+        android:layout_gravity="bottom"
+        app:itemIconTint="@color/primary"
+        app:itemTextColor="@color/black"
+        />
+
+
+
+</GridLayout>

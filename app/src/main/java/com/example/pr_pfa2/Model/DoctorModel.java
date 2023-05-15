@@ -1,25 +1,30 @@
-package com.example.pr_pfa2;
+    package com.example.pr_pfa2.Model;
 
-public class DoctorModel {
+    public class DoctorModel {
 
     private String fullName;
     private String email;
     private String phoneNumber;
     private String address;
     private String qualifications;
+    private String city;
     private float rating;
+    private String role;
+    private String targetID;
 
     public DoctorModel() {
         // empty constructor required for Firestore deserialization
     }
 
-    public DoctorModel(String fullName, String email, String phoneNumber, String address, String qualifications, float rating) {
+    public DoctorModel(String fullName, String email, String phoneNumber, String address, String city, String qualifications, float rating, String role) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.qualifications = qualifications;
         this.rating = rating;
+        this.role = role;
+        this.city = city;
     }
 
 
@@ -70,5 +75,29 @@ public class DoctorModel {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getTargetID() {
+        return targetID;
+    }
+
+    public void setTargetID(String targetID) {
+        this.targetID = targetID;
     }
 }
