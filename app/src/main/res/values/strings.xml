@@ -12,4 +12,5 @@
         <item>Kenitra</item>
         <item>Tetouan</item>
     </string-array>
+    <string name="email">Email</string>
 </resources>
