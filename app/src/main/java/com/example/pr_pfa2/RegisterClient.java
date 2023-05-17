@@ -98,6 +98,7 @@ public class RegisterClient extends AppCompatActivity {
 
                                     Map<String, Object> userInfo = new HashMap<>();
 
+                                    userInfo.put("userID",user.getUid());
                                     userInfo.put("fullName", fullName.getText().toString());
                                     userInfo.put("email", email.getText().toString());
                                     userInfo.put("phoneNumber", phoneNumber.getText().toString());

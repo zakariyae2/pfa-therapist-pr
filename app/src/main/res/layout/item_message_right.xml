@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messageRLL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="end"
+    android:layout_margin="5dp"
+    >
+
+                <TextView
+                    android:id="@+id/messageTV"
+                    android:text="Message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:textSize="18dp"
+                    android:background="@color/primary"
+                    android:layout_gravity="end"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:id="@+id/messagetimestampTV"
+                    android:text="timstamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="end"
+                    />
+
+
+</LinearLayout>
+
+

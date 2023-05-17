@@ -1,27 +1,27 @@
 package com.example.pr_pfa2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import android.widget.RelativeLayout;
-
-
 public class MainActivity extends AppCompatActivity {
-    RelativeLayout R1;
+    ImageButton btni1;
 
     Button logoutButton;
     TextView helloMSG;
@@ -29,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseUser currentUser;
     String fullname;
+    RelativeLayout myprofileRL;
+    BottomNavigationView bottomNav;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -44,17 +46,12 @@ public class MainActivity extends AppCompatActivity {
 
         btni1=(ImageButton) findViewById(R.id.ac1);
         btni1.setOnClickListener(new View.OnClickListener() {
-
-        R1=(RelativeLayout) findViewById(R.id.bord1);
-        R1.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Intent act1=new Intent(MainActivity.this,My_patients.class);
                 startActivity(act1);
             }
         });
-
 
 
 
@@ -85,6 +82,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //goto my profile
+
+        myprofileRL = findViewById(R.id.bord3);
+
+        myprofileRL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), MyProfileDoctor.class));
+                //startActivity(new Intent(v.getContext(), ContactList.class));
+
+            }
+        });
+
+
+        //nav bar Doctor MainAcitivity
+
+
+        bottomNav = findViewById(R.id.bottomNavViewDoctor);
+        bottomNav.setSelectedItemId(R.id.home);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                   /* case R.id.home:
+                        // Handle item 1 click
+                        startActivity(new Intent(getApplicationContext(), Client.class));
+                        return true;
+
+                    */
+                    case R.id.messages:
+                        // Handle item 2 click
+                        startActivity(new Intent(getApplicationContext(), ContactList.class));
+                        return true;
+                    case R.id.profile:
+                        // Handle item 3 click
+                        startActivity(new Intent(getApplicationContext(), MyProfileDoctor.class));
+                        return true;
+
+                    // Add more cases for each item in your Bottom Navigation Bar
+                }
+                return false;
+            }
+        });
 
 
 

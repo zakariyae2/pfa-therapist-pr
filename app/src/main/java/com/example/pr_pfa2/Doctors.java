@@ -1,7 +1,5 @@
 package com.example.pr_pfa2;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,23 +7,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.pr_pfa2.Adapter.DoctorAdapter;
+import com.example.pr_pfa2.Model.DoctorModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Doctors extends AppCompatActivity {
@@ -35,6 +32,7 @@ public class Doctors extends AppCompatActivity {
     RecyclerView recylcerview;
     DoctorAdapter myAdapter;
     ArrayList<DoctorModel> list;
+    TextView moreinfoTV;
 
 
 
@@ -55,6 +53,7 @@ public class Doctors extends AppCompatActivity {
             }
         });
 
+
         recylcerview = findViewById(R.id.recyclerview);
         recylcerview.setHasFixedSize(true);
         recylcerview.setLayoutManager(new LinearLayoutManager(this));
@@ -65,26 +64,42 @@ public class Doctors extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference usersRef = db.collection("Users");
+
 
         usersRef.whereEqualTo("role", "doctor")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot querySnapshot) {
-                        List<User> doctors = new ArrayList<>();
+                        //List<DoctorModel> doctors = new ArrayList<>();
                         for (QueryDocumentSnapshot document : querySnapshot) {
                             DoctorModel doctor = document.toObject(DoctorModel.class);
+                            doctor.setTargetID(document.getId());
+
+/*
+            String fullname = document.getString("fullName");
+            String email = document.getString("email");
+            float rating = (float) document.getDouble("rating").doubleValue();
+            String address = document.getString("address");
+            String qualifications = document.getString("qualifications");
+
+ */
+
+
+                            /*String qualifications = document.getString("qualifications");
+                            doctor.setQualifications(qualifications);
+                             */
+                            //doctor(String fullName, String email, String phoneNumber, String address, String qualifications, float rating);
                             list.add(doctor);
+
+                            //order data based on rating
+                            //Collections.sort(list, (item1, item2) -> Float.compare(item2.getRating(), item1.getRating()));
+
                         }
                         // display the list of doctors in the RecyclerView
+
 
                         myAdapter.notifyDataSetChanged();
                     }
@@ -117,10 +132,7 @@ public class Doctors extends AppCompatActivity {
 
 
 
-
-
-
-
-
     }
+
+
 }

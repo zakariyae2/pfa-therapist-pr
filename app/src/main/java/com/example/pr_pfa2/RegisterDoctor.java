@@ -104,6 +104,7 @@ public class RegisterDoctor extends AppCompatActivity {
                                     userInfo.put("address", address.getText().toString());
                                     userInfo.put("city", city);
                                     userInfo.put("rating", 0);
+                                    userInfo.put("qualifications", qualifications.getText().toString());
                                     userInfo.put("role", "doctor");
 
 
