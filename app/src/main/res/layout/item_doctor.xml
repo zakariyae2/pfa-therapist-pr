@@ -4,48 +4,19 @@
     android:layout_height="wrap_content"
     android:id="@+id/card"
     android:layout_margin="3dp"
-    android:backgroundTint="@color/white"
     >
-
-        <GridLayout
+    
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="3"
-        android:padding="15dp"
-        android:layout_margin="2dp"
-        android:useDefaultMargins="true"
-        android:alignmentMode="alignMargins"
-        android:layout_gravity="center"
-        android:background="@color/background">
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/profile_background">
-
-            <ImageView
-            android:id="@+id/profilepictureCIV"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/pp"
-            android:layout_margin="2dp"
-            />
-            </FrameLayout>
-
-        <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
-
+        android:background="@color/background">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_margin="2dp">
-
         <TextView
             android:text="FullName: "
             android:layout_width="wrap_content"
@@ -89,36 +60,25 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"></LinearLayout>
 
-            <TextView
-                android:text="Rating: "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-            <RatingBar
-                android:id="@+id/ratingbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/ratingBarStyleSmall"
-                />
 
-        </LinearLayout>
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button"
+            android:text="REQUEST"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:id="@+id/request"
+            />
+
 
 
     </LinearLayout>
-
-        <TextView
-            android:id="@+id/moreinfoTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_margin="10dp"
-            android:text="More info"
-            android:textColor="@color/silver"/>
-
-    </GridLayout>
 
 </androidx.cardview.widget.CardView>

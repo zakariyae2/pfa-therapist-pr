@@ -13,4 +13,7 @@
         <item>Tetouan</item>
     </string-array>
     <string name="email">Email</string>
+    <string name="delete">Delete</string>
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
 </resources>

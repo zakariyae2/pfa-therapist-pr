@@ -1,5 +1,7 @@
 package com.example.pr_pfa2;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,22 +9,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pr_pfa2.Adapter.DoctorAdapter;
 import com.example.pr_pfa2.Model.DoctorModel;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Doctors extends AppCompatActivity {
@@ -33,6 +42,10 @@ public class Doctors extends AppCompatActivity {
     DoctorAdapter myAdapter;
     ArrayList<DoctorModel> list;
     TextView moreinfoTV;
+    FirebaseAuth fAuth;
+    FirebaseUser currentUser;
+    String email;
+    String fullname;
 
 
 
@@ -59,8 +72,25 @@ public class Doctors extends AppCompatActivity {
         recylcerview.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter = new DoctorAdapter(this, list);
+        myAdapter = new DoctorAdapter(this, list, null, null);
         recylcerview.setAdapter(myAdapter);
+
+        fAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
+        currentUser = fAuth.getCurrentUser();
+
+        DocumentReference df = mStore.collection("Users").document(currentUser.getUid());
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                email = documentSnapshot.getString("email");
+                fullname = documentSnapshot.getString("fullName");
+
+                // move adapter initialization here
+                myAdapter = new DoctorAdapter(Doctors.this, list, fullname, email);
+                recylcerview.setAdapter(myAdapter);
+            }
+        });
 
 
 

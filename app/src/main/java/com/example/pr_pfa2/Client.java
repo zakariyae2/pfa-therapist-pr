@@ -13,14 +13,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Client extends AppCompatActivity {
 
@@ -30,10 +37,12 @@ public class Client extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseUser currentUser;
     String fullname;
+    String userEmail3;
+    String uid;
     BottomNavigationView bottomNav;
 
 
-    RelativeLayout doctors_card, profile_card;
+    RelativeLayout doctors_card, profile_card,appointment_card;
 
 
 
@@ -45,6 +54,8 @@ public class Client extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         currentUser = fAuth.getCurrentUser();
+        userEmail3 = currentUser.getEmail();
+        uid=currentUser.getUid();
 
         //get the user's fullname and display it
         DocumentReference df = fStore.collection("Users").document(currentUser.getUid());
@@ -120,6 +131,37 @@ public class Client extends AppCompatActivity {
             }
         });
 
+        //goto appointment activity
+
+        appointment_card = findViewById(R.id.cardAppointment);
+        appointment_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent App=new Intent(Client.this,CalendarAppointment.class);
+                fStore.collection("Mypatients").whereEqualTo("emailpat", userEmail3)
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                if (!queryDocumentSnapshots.isEmpty()) {
+                                    // The query result is not empty
+                                    startActivity(App);
+                                } else {
+                                    // The query result is empty
+                                    Toast.makeText(Client.this, "You are not signed with a therapist", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@androidx.annotation.NonNull Exception e) {
+                                Toast.makeText(Client.this, "An error occurred", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+            }
+        });
+
 
         //goto myprofile acitivity
 
@@ -133,4 +175,22 @@ public class Client extends AppCompatActivity {
 
 
     }
+    /*
+    public void rule(){
+        fStore.collection("Mypatients").whereEqualTo("emailpat",userEmail2)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        startActivity(new Intent(getApplicationContext(), CalendarAppointment.class));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@androidx.annotation.NonNull Exception e) {
+                        Toast.makeText(Client.this, "you are not signed with a therapist", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+     */
 }

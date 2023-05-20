@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,14 +17,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pr_pfa2.Model.DoctorModel;
 import com.example.pr_pfa2.DoctorProfile;
 import com.example.pr_pfa2.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<DoctorModel> list;
     static DoctorModel doctor;
+    String currentUserFullName;
+    String currentUserEmail;
 
 
     public interface OnItemClickListener {
@@ -31,9 +41,11 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
 
 
 
-    public DoctorAdapter(Context context, ArrayList<DoctorModel> list) {
+    public DoctorAdapter(Context context, ArrayList<DoctorModel> list, String currentUserFullName, String currentUserEmail) {
         this.context = context;
         this.list = list;
+        this.currentUserFullName = currentUserFullName;
+        this.currentUserEmail = currentUserEmail;
     }
 
 
@@ -52,7 +64,15 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
        holder.fullName.setText(doctor.getFullName());
        holder.address.setText(doctor.getAddress());
        holder.ratingbar.setRating(doctor.getRating());
+        holder.requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DoctorModel doctor = list.get(position);
 
+                // Get the email of the clicked doctor
+                request(doctor);
+            }
+        });
 
     }
 
@@ -63,6 +83,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView fullName, address;
+        Button requestButton;
         RatingBar ratingbar;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -71,6 +92,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
             fullName = itemView.findViewById(R.id.fullnameTV);
             address = itemView.findViewById(R.id.addressTV);
             ratingbar = itemView.findViewById(R.id.ratingbar);
+            requestButton = itemView.findViewById(R.id.request);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -106,5 +128,31 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
 
         }
 
+    }
+    public void request(DoctorModel doctor){
+        String emaildoc = doctor.getEmail();
+        String email = currentUserEmail;
+        String fullname = currentUserFullName;
+
+        // Send the email and name to Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference requestsRef = db.collection("requests");
+        Map<String, Object> request = new HashMap<>();
+        request.put("emaildoc", emaildoc);
+        request.put("emailpat", email);
+        request.put("fullName", fullname);
+        requestsRef.document(emaildoc).set(request)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Appointment request sent", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Failed to send appointment request", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

@@ -5,33 +5,225 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/forest_green"
+    android:background="@color/primary"
     tools:context=".Appointement">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150sp"
         android:orientation="vertical"
         >
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Appointment"
             android:gravity="center"
-            android:textSize="40dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:text="Appointment"
+            android:id="@+id/chapp"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_white">
+        android:layout_height="450dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/background_white"
+        android:orientation="vertical">
 
-        <CalendarView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:background="@color/white" />
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/btn_9pm"
+                android:layout_width="117sp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtap1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginTop="10sp"
+                    android:text="9am-10am"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtap1"
+                    android:layout_marginLeft="35sp"
+                    android:text="Avalable"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/btn_10pm"
+                android:layout_width="117sp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtap2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18sp"
+                    android:layout_marginTop="10sp"
+                    android:text="10am-11am"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtap2"
+                    android:layout_marginLeft="35sp"
+                    android:text="Avalable"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/btn_11pm"
+                android:layout_width="117sp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtap3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18sp"
+                    android:layout_marginTop="10sp"
+                    android:text="11am-12am"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtap3"
+                    android:layout_marginLeft="35sp"
+                    android:text="Avalable"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/btn_2am"
+                android:layout_width="117sp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtap4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="28sp"
+                    android:layout_marginTop="10sp"
+                    android:text="2pm-3pm"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtap4"
+                    android:layout_marginLeft="35sp"
+                    android:text="Avalable"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/btn_3am"
+                android:layout_width="117sp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtap5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="28sp"
+                    android:layout_marginTop="10sp"
+                    android:text="3pm-4pm"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtap5"
+                    android:layout_marginLeft="35sp"
+                    android:text="Avalable"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/btn_4am"
+                android:layout_width="117sp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtap6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="28sp"
+                    android:layout_marginTop="10sp"
+                    android:text="4pm-5pm"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtap6"
+                    android:layout_marginLeft="35sp"
+                    android:text="Avalable"
+                    android:textColor="@color/black"
+                    android:textStyle="italic" />
+            </RelativeLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/dat"
+            />
+
     </LinearLayout>
 
 </LinearLayout>

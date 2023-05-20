@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "729712230462",
+    "project_id": "therapist-app-1fcec",
+    "storage_bucket": "therapist-app-1fcec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729712230462:android:bbe3fe17b4f4ad9282d16f",
+        "android_client_info": {
+          "package_name": "com.example.pr_pfa2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729712230462-9blm7688dv7blcjqnu8mlj2d0vl9atb5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIOG2a1W_ZNYuIpwQlASqhaaB3jdU6A0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729712230462-9blm7688dv7blcjqnu8mlj2d0vl9atb5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
