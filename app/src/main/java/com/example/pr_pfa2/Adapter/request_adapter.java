@@ -107,6 +107,7 @@ public class request_adapter extends RecyclerView.Adapter<request_adapter.MyView
                                         String fullName = document.getString("fullName");
                                         String emailpat = document.getString("emailpat");
                                         String emaildoc = document.getString("emaildoc");
+                                        String phone = document.getString("phone");
 
                                         // Delete the request from the requests collection
                                         db.collection("requests").document(emaildoc)
@@ -119,6 +120,7 @@ public class request_adapter extends RecyclerView.Adapter<request_adapter.MyView
                                                         patient.put("fullName", fullName);
                                                         patient.put("emailpat", emailpat);
                                                         patient.put("emaildoc", emaildoc);
+                                                        patient.put("phone", phone);
                                                         db.collection("Mypatients").add(patient)
                                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                                     @Override

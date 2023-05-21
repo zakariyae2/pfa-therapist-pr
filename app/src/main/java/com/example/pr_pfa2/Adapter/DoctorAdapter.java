@@ -33,6 +33,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
     static DoctorModel doctor;
     String currentUserFullName;
     String currentUserEmail;
+    String currentUserPhone;
 
 
     public interface OnItemClickListener {
@@ -41,11 +42,12 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
 
 
 
-    public DoctorAdapter(Context context, ArrayList<DoctorModel> list, String currentUserFullName, String currentUserEmail) {
+    public DoctorAdapter(Context context, ArrayList<DoctorModel> list, String currentUserFullName, String currentUserEmail, String currentUserPhone) {
         this.context = context;
         this.list = list;
         this.currentUserFullName = currentUserFullName;
         this.currentUserEmail = currentUserEmail;
+        this.currentUserPhone = currentUserPhone;
     }
 
 
@@ -133,6 +135,8 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
         String emaildoc = doctor.getEmail();
         String email = currentUserEmail;
         String fullname = currentUserFullName;
+        String Phone = currentUserPhone;
+
 
         // Send the email and name to Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -141,6 +145,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
         request.put("emaildoc", emaildoc);
         request.put("emailpat", email);
         request.put("fullName", fullname);
+        request.put("phone", Phone);
         requestsRef.document(emaildoc).set(request)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

@@ -41,7 +41,7 @@
                 android:id="@+id/btn_9pm"
                 android:layout_width="117sp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="15sp"
+                android:layout_marginLeft="5sp"
                 android:layout_marginTop="5dp"
                 android:background="@color/white">
 
@@ -134,7 +134,7 @@
                 android:id="@+id/btn_2am"
                 android:layout_width="117sp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="15sp"
+                android:layout_marginLeft="5sp"
                 android:layout_marginTop="5dp"
                 android:background="@color/white">
 

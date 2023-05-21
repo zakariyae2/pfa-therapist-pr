@@ -75,8 +75,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position) {
         holder.dayOfMonth.setText(daysOfMonth.get(position));
         String dayText = daysOfMonth.get(position);
-
-        // Check if the dayText is not empty
         if (!dayText.isEmpty()) {
             // Format the selected date based on the dayText
             LocalDate selectedDate = LocalDate.of(selectedYear, selectedMonth, Integer.parseInt(dayText));
@@ -95,8 +93,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
                                 // Set the background color to blue if there is a scheduled appointment
                                 holder.itemView.setBackgroundResource(R.color.blue);
                                 holder.dayOfMonth.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), android.R.color.holo_blue_dark));
-
-                                // Print the day of the selected date
                                 holder.dayOfMonth.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {

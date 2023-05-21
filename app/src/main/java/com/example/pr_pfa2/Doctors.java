@@ -46,6 +46,7 @@ public class Doctors extends AppCompatActivity {
     FirebaseUser currentUser;
     String email;
     String fullname;
+    String phone;
 
 
 
@@ -72,7 +73,7 @@ public class Doctors extends AppCompatActivity {
         recylcerview.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter = new DoctorAdapter(this, list, null, null);
+        myAdapter = new DoctorAdapter(this, list, null, null, null);
         recylcerview.setAdapter(myAdapter);
 
         fAuth = FirebaseAuth.getInstance();
@@ -85,9 +86,10 @@ public class Doctors extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 email = documentSnapshot.getString("email");
                 fullname = documentSnapshot.getString("fullName");
+                phone = documentSnapshot.getString("phoneNumber");
 
                 // move adapter initialization here
-                myAdapter = new DoctorAdapter(Doctors.this, list, fullname, email);
+                myAdapter = new DoctorAdapter(Doctors.this, list, fullname, email, phone);
                 recylcerview.setAdapter(myAdapter);
             }
         });

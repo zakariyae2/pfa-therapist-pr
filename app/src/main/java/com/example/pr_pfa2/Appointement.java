@@ -44,7 +44,7 @@ public class Appointement extends AppCompatActivity {
     FirebaseUser currentUser;
     String fullname;
     FirebaseFirestore db;
-    String hour,message,message2,userEmail2,docEmail;
+    String hour,message,message2,userEmail2,docEmail,phone;
 
 
     @Override
@@ -84,6 +84,7 @@ public class Appointement extends AppCompatActivity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             docEmail = documentSnapshot.getString("emaildoc");
+                            phone = documentSnapshot.getString("phone");
                             // Do something with the emaildoc value
                         }
                     }
@@ -103,74 +104,101 @@ public class Appointement extends AppCompatActivity {
         R1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Re1 = new Intent(Appointement.this, Shedule1.class);
                 hour = "sheduled at 9am";
                 Appointment();
-                startActivity(Re1);
             }
         });
         R2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Re2 = new Intent(Appointement.this, Shedule1.class);
                 hour = "sheduled at 10am";
                 Appointment();
-                startActivity(Re2);
             }
         });
 
         R3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Re3=new Intent(Appointement.this,Shedule1.class);
                 hour = "sheduled at 11am";
                 Appointment();
-                startActivity(Re3);
             }
         });
         R4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Re4=new Intent(Appointement.this,Shedule1.class);
                 hour = "sheduled at 2pm";
                 Appointment();
-                startActivity(Re4);
             }
         });
         R5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Re5=new Intent(Appointement.this,Shedule1.class);
                 hour = "sheduled at 3pm";
                 Appointment();
-                startActivity(Re5);
             }
         });
         R6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Re6=new Intent(Appointement.this,Shedule1.class);
                 hour = "sheduled at 4pm";
                 Appointment();
-                startActivity(Re6);
             }
         });
     }
 
     public void Appointment() {
         db = FirebaseFirestore.getInstance();
-        Map<String, Object> data = new HashMap<>();
-        data.put("date", message);
-        data.put("month",message2);
-        data.put("schedule",hour);
-        data.put("emailpat",userEmail2);
-        data.put("emaildoc",docEmail);
-        data.put("hour",hour);
-        data.put("state","sheduled");
+        Map<String, Object> schedule = new HashMap<>();
+        schedule.put("date", message);
+        schedule.put("month",message2);
+        schedule.put("emailpat",userEmail2);
+        schedule.put("emaildoc",docEmail);
+        schedule.put("fullName",fullname);
+        schedule.put("hour",hour);
+        schedule.put("phone",phone);
+        schedule.put("state","sheduled");
 
 
-        db.collection("Appointment").document(fullname)
-                .set(data);
+        db.collection("Appointment")
+                .whereEqualTo("emailpat",userEmail2)
+                .whereEqualTo("state", "sheduled")
+                .limit(1)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots.isEmpty()) {
+                            db.collection("Appointment").document(fullname)
+                                    .set(schedule)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            // Appointment scheduled successfully
+                                            Toast.makeText(Appointement.this, "Appointment scheduled successfully", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(getApplicationContext(), Shedule1.class));
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            // Error occurred while scheduling the appointment
+                                            Toast.makeText(Appointement.this, "error", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        } else {
+                            // Appointment already exists for the selected date and month
+                            Toast.makeText(Appointement.this, "you already have appointment", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error occurred while querying the database
+                        Toast.makeText(Appointement.this, "error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
     }
 }

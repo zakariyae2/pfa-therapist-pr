@@ -135,20 +135,20 @@ public class MainActivity extends AppCompatActivity {
         R4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), CalendarAppointment.class));
+                startActivity(new Intent(getApplicationContext(), ListShedule.class));
 
             }
         });
-        /*
+
         R5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent act4=new Intent(MainActivity.this,clendar.class);
+                Intent act4=new Intent(MainActivity.this,DoctorCalendar.class);
                 startActivity(act4);
             }
         });
 
-         */
+
         btni1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,19 +166,19 @@ public class MainActivity extends AppCompatActivity {
         btni4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), CalendarAppointment.class));
+                startActivity(new Intent(getApplicationContext(), ListShedule.class));
             }
         });
-        /*
+
         btni5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent imb5=new Intent(MainActivity.this,clendar.class);
+                Intent imb5=new Intent(MainActivity.this,DoctorCalendar.class);
                 startActivity(imb5);
             }
         });
 
-         */
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
