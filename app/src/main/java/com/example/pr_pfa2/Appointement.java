@@ -43,6 +43,7 @@ public class Appointement extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseUser currentUser;
     String fullname;
+    String Id;
     FirebaseFirestore db;
     String hour,message,message2,userEmail2,docEmail,phone;
 
@@ -65,6 +66,7 @@ public class Appointement extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         currentUser = fAuth.getCurrentUser();
         userEmail2 = currentUser.getEmail();
+        Id = currentUser.getUid();
 
 
         DocumentReference df = fStore.collection("Users").document(currentUser.getUid());
@@ -156,6 +158,7 @@ public class Appointement extends AppCompatActivity {
         schedule.put("fullName",fullname);
         schedule.put("hour",hour);
         schedule.put("phone",phone);
+        schedule.put("userID",Id);
         schedule.put("state","sheduled");
 
 
@@ -175,7 +178,7 @@ public class Appointement extends AppCompatActivity {
                                         public void onSuccess(Void aVoid) {
                                             // Appointment scheduled successfully
                                             Toast.makeText(Appointement.this, "Appointment scheduled successfully", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(getApplicationContext(), Shedule1.class));
+                                            //startActivity(new Intent(getApplicationContext(), Shedule1.class));
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {

@@ -30,12 +30,12 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public class MainActivity extends AppCompatActivity {
     RelativeLayout R1;
     RelativeLayout R2;
+    RelativeLayout R3;
     RelativeLayout R4;
-    RelativeLayout R5;
     ImageButton btni1;
     ImageButton btni2;
+    ImageButton btni3;
     ImageButton btni4;
-    ImageButton btni5;
     String userEmail2;
     Button logoutButton;
     TextView helloMSG;
@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
         R1=(RelativeLayout) findViewById(R.id.bord1);
         R2=(RelativeLayout) findViewById(R.id.bord2);
+        R3=(RelativeLayout) findViewById(R.id.bord3);
         R4=(RelativeLayout) findViewById(R.id.bord4);
-        R5=(RelativeLayout) findViewById(R.id.bord5);
         btni1=(ImageButton) findViewById(R.id.ac1);
-        btni2=(ImageButton) findViewById(R.id.ac2);
+        btni2=(ImageButton) findViewById(R.id.calen);
+        btni3=(ImageButton) findViewById(R.id.prof);
         btni4=(ImageButton) findViewById(R.id.appo);
-        btni5=(ImageButton) findViewById(R.id.calen);
         logoutButton = findViewById(R.id.btnout1);
 
         fAuth = FirebaseAuth.getInstance();
@@ -128,8 +128,15 @@ public class MainActivity extends AppCompatActivity {
         R2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent act2=new Intent(MainActivity.this,patientrequest.class);
-                startActivity(act2);
+                Intent act4=new Intent(MainActivity.this,DoctorCalendar.class);
+                startActivity(act4);
+            }
+        });
+        R3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent act4=new Intent(v.getContext(), MyProfileClient.class);
+                startActivity(act4);
             }
         });
         R4.setOnClickListener(new View.OnClickListener() {
@@ -140,13 +147,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        R5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent act4=new Intent(MainActivity.this,DoctorCalendar.class);
-                startActivity(act4);
-            }
-        });
 
 
         btni1.setOnClickListener(new View.OnClickListener() {
@@ -159,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
         btni2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent imb2 = new Intent(MainActivity.this, patientrequest.class);
-                startActivity(imb2);
+                Intent imb5=new Intent(MainActivity.this,DoctorCalendar.class);
+                startActivity(imb5);
             }
         });
         btni4.setOnClickListener(new View.OnClickListener() {
@@ -170,13 +170,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btni5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent imb5=new Intent(MainActivity.this,DoctorCalendar.class);
-                startActivity(imb5);
-            }
-        });
 
 
         logoutButton.setOnClickListener(new View.OnClickListener() {

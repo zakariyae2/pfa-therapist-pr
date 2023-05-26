@@ -57,29 +57,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/background_white"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/lin2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="191dp"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/bord1"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="50dp"
+                android:layout_width="151dp"
+                android:layout_height="148dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/border">
 
                 <ImageButton
                     android:id="@+id/ac1"
-                    android:layout_width="64dp"
-                    android:layout_height="61dp"
-                    android:layout_marginLeft="35dp"
+                    android:layout_width="74dp"
+                    android:layout_height="77dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/ac1" />
 
@@ -89,32 +90,32 @@
                     android:layout_below="@id/ac1"
                     android:gravity="center"
                     android:text="My patients"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/bord2"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="50dp"
+                android:layout_width="151dp"
+                android:layout_height="148dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/border" >
+                android:background="@drawable/border">
 
                 <ImageButton
-                    android:id="@+id/ac2"
-                    android:layout_width="87dp"
-                    android:layout_height="76dp"
-                    android:layout_marginLeft="26dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/adac" />
+                    android:id="@+id/calen"
+                    android:layout_width="83dp"
+                    android:layout_height="74dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/calnder" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/ac2"
+                    android:layout_below="@+id/calen"
                     android:gravity="center"
-                    android:text="Patients\nRequest"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="My calendar"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -122,48 +123,50 @@
         <LinearLayout
             android:id="@+id/lin3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="187dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/bord3"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="50dp"
+                android:layout_width="151dp"
+                android:layout_height="148dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/border" >
+                android:background="@drawable/border">
 
                 <ImageButton
-                    android:layout_width="67dp"
-                    android:layout_height="64dp"
-                    android:background="@drawable/profile"
                     android:id="@+id/prof"
-                    android:layout_marginLeft="31dp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_width="86dp"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/profile" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/prof"
-                    android:text="Profile"
                     android:gravity="center"
-                    android:textStyle="bold"/>
+                    android:text="Profile"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/bord4"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginLeft="50dp"
+                android:layout_width="151dp"
+                android:layout_height="148dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/border" >
+                android:background="@drawable/border">
 
                 <ImageButton
                     android:id="@+id/appo"
-                    android:layout_width="76dp"
-                    android:layout_height="63dp"
-                    android:background="@drawable/appointment"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_width="94dp"
+                    android:layout_height="81dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/appointment" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -171,7 +174,7 @@
                     android:layout_below="@+id/appo"
                     android:gravity="center"
                     android:text="Appointement"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -180,41 +183,21 @@
             android:layout_height="210dp"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/bord5"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border" >
-
-                <ImageButton
-                    android:id="@+id/calen"
-                    android:layout_width="78dp"
-                    android:layout_height="66dp"
-                    android:layout_marginLeft="26dp"
-                    android:layout_marginTop="17dp"
-                    android:background="@drawable/calnder" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/calen"
-                    android:text="My calendar"
-                    android:gravity="center"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
-
             <Button
-                android:layout_width="150dp"
-                android:layout_height="30dp"
                 android:id="@+id/btnout1"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="37dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/red"
-                android:text="signout"
+                android:text="Sign Out"
                 android:textColor="@color/white"
-                android:textSize="15dp" />
+                android:textSize="14dp" />
+
         </LinearLayout>
+
+
 
 
     </LinearLayout>

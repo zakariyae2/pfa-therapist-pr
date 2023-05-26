@@ -6,6 +6,7 @@ public class UserModel {
     private String phoneNumber;
     private String address;
     private String city;
+    private String id;
     private float rating;
 
 
@@ -13,13 +14,14 @@ public class UserModel {
         // empty constructor required for Firestore deserialization
     }
 
-    public UserModel(String fullName, String email, String phoneNumber, String address, float rating, String city) {
+    public UserModel(String fullName, String email, String phoneNumber, String address, float rating, String city, String id) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.rating = rating;
         this.city = city;
+        this.id = id;
     }
 
 
@@ -67,6 +69,14 @@ public class UserModel {
     public String getCity() {return city;}
 
     public void setCity(String city) {this.city = city;}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
 
 

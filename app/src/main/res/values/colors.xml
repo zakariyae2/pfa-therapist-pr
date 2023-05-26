@@ -16,4 +16,9 @@
     <color name="silver">#C0C0C0</color>
     <color name="primary">#30DB39</color>
     <color name="blue">#0000FF</color>
+    <color name="blue_2">#0557BC</color>
+    <color name="light_blue">#058FBC</color>
+    <color name="background2">#DAD1D1</color>
+
+
 </resources>

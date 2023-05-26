@@ -11,11 +11,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pr_pfa2.Model.DoctorModel;
 import com.example.pr_pfa2.DoctorProfile;
+import com.example.pr_pfa2.PayPal;
 import com.example.pr_pfa2.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,20 +35,24 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
     static DoctorModel doctor;
     String currentUserFullName;
     String currentUserEmail;
+    String currentUserId;
     String currentUserPhone;
 
 
-    public interface OnItemClickListener {
+    /*public interface OnItemClickListener {
         void onItemClick(DoctorModel data);
     }
 
+     */
 
 
-    public DoctorAdapter(Context context, ArrayList<DoctorModel> list, String currentUserFullName, String currentUserEmail, String currentUserPhone) {
+
+    public DoctorAdapter(Context context, ArrayList<DoctorModel> list, String currentUserFullName, String currentUserEmail,String currentUserId, String currentUserPhone) {
         this.context = context;
         this.list = list;
         this.currentUserFullName = currentUserFullName;
         this.currentUserEmail = currentUserEmail;
+        this.currentUserId = currentUserId;
         this.currentUserPhone = currentUserPhone;
     }
 
@@ -69,10 +75,12 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
         holder.requestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DoctorModel doctor = list.get(position);
+                //DoctorModel doctor = list.get(position);
 
                 // Get the email of the clicked doctor
-                request(doctor);
+                Sign(doctor);
+                Intent pay = new Intent(v.getContext(), PayPal.class);
+                v.getContext().startActivity(pay);
             }
         });
 
@@ -131,32 +139,34 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
         }
 
     }
-    public void request(DoctorModel doctor){
+    public void Sign(DoctorModel doctor){
         String emaildoc = doctor.getEmail();
         String email = currentUserEmail;
         String fullname = currentUserFullName;
         String Phone = currentUserPhone;
+        String Id = currentUserId;
 
 
         // Send the email and name to Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference requestsRef = db.collection("requests");
+        CollectionReference requestsRef = db.collection("Mypatients");
         Map<String, Object> request = new HashMap<>();
         request.put("emaildoc", emaildoc);
         request.put("emailpat", email);
         request.put("fullName", fullname);
         request.put("phone", Phone);
+        request.put("userId", Id);
         requestsRef.document(emaildoc).set(request)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Appointment request sent", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Your signed with this doctor", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Failed to send appointment request", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Failed to sign up", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -1,5 +1,6 @@
 package com.example.pr_pfa2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,7 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.v;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -21,15 +27,26 @@ import java.util.Map;
 
 public class Add_patients extends AppCompatActivity {
     EditText fullName,phone,email,address;
-    String city2;
+    String city2, password;
     Button btnn2;
     FirebaseFirestore db;
+    Boolean empty = true;
+
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
+
+        // Initialize Firebase Auth
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+
         setContentView(R.layout.activity_add_patients);
+        password = "123456";
         fullName=(EditText) findViewById(R.id.editfn);
         phone=(EditText) findViewById(R.id.editph);
         email=(EditText) findViewById(R.id.editem);
@@ -49,35 +66,57 @@ public class Add_patients extends AppCompatActivity {
         });
     }
     public void writeNewUser(){
-        String FullName = fullName.getText().toString();
-        String Phone = phone.getText().toString();
-        String Email = email.getText().toString();
-        String Address = address.getText().toString();
-        db=FirebaseFirestore.getInstance();
-        Map<String,Object> user = new HashMap<>();
-        user.put("fullName",FullName);
-        user.put("phoneNumber",Phone);
-        user.put("email",Email);
-        user.put("Address",Address);
-        user.put("city",city2);
-        user.put("role", "client");
+        checkEmptyField(fullName);
+        checkEmptyField(email);
+        checkEmptyField(phone);
+        checkEmptyField(address);
+
+        if(!empty){
+            //start registration
+
+            fAuth.createUserWithEmailAndPassword(email.getText().toString(), password)
+                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            FirebaseUser user = fAuth.getCurrentUser();
+                            Toast.makeText(Add_patients.this, "Patient added", Toast.LENGTH_SHORT ).show();
+
+                            DocumentReference df = fStore.collection("Users").document(user.getUid());
+
+                            Map<String, Object> userInfo = new HashMap<>();
+
+                            userInfo.put("userID",user.getUid());
+                            userInfo.put("fullName", fullName.getText().toString());
+                            userInfo.put("email", email.getText().toString());
+                            userInfo.put("phoneNumber", phone.getText().toString());
+                            userInfo.put("address", address.getText().toString());
+                            userInfo.put("city", city2);
+                            userInfo.put("role", "client");
+
+                            df.set(userInfo);
 
 
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-        db.collection("Users").document(Email)
-                .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(Add_patients.this, "User added successfully", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Add_patients.this, "Failed to add user", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            Toast.makeText(Add_patients.this, "Registration failed", Toast.LENGTH_SHORT ).show();
+
+                        }
+                    });
+
+        }else{
+            Toast.makeText(Add_patients.this, "All fields must be filled", Toast.LENGTH_SHORT ).show();
+        }
+
+    }
+    public boolean checkEmptyField(EditText textField){
+        if(textField.getText().toString().isEmpty())
+            empty = true;
+        else empty= false;
+
+        return empty;
     }
 }
 

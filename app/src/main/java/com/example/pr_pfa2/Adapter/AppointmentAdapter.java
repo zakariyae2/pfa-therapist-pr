@@ -43,7 +43,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         holder.Fullname.setText(shed.getFullName());
         holder.Phone.setText(shed.getPhone());
         holder.Email.setText(shed.getEmailpat());
-
+        holder.Shedule.setText(shed.getDate());
     }
 
     @Override
@@ -52,12 +52,13 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView Fullname,Phone,Email;
+        TextView Fullname,Phone,Email,Shedule;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Fullname=itemView.findViewById(R.id.fullnameApp);
-            Phone=itemView.findViewById(R.id.addressApp);
-            Email=itemView.findViewById(R.id.phoneApp);
+            Phone=itemView.findViewById(R.id.phoneApp);
+            Email=itemView.findViewById(R.id.addressApp);
+            Shedule=itemView.findViewById(R.id.sheduleApp);
         }
     }
 }

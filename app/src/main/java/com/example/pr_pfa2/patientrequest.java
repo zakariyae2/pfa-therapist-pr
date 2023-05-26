@@ -1,5 +1,5 @@
 package com.example.pr_pfa2;
-
+/*
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -84,3 +84,5 @@ public class patientrequest extends AppCompatActivity {
 
 
 }
+
+ */
