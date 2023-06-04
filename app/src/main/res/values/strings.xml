@@ -12,6 +12,12 @@
         <item>Kenitra</item>
         <item>Tetouan</item>
     </string-array>
+    <string-array name="states">
+        <item></item>
+        <item>sheduled</item>
+        <item>done</item>
+        <item>canceled</item>
+    </string-array>
     <string name="email">Email</string>
     <string name="delete">Delete</string>
     <string name="back"><![CDATA[<-]]></string>

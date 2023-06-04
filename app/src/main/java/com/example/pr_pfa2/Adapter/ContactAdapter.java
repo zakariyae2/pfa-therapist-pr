@@ -86,14 +86,18 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
             targetID = contact.getUser1ID();
         }
 
+        holder.lastmsgTV.setText(contact.getLastMessage());
+
         DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(targetID);
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                     String email = documentSnapshot.getString("email");
-                    holder.fullnameTV.setText(email);
-                    holder.lastmsgTV.setText(targetID);
+                    String fullName = documentSnapshot.getString("fullName");
+                    holder.fullnameTV.setText(fullName);
+
+                    //holder.lastmsgTV.setText(targetID);
 
                     // Set the flag to true to indicate that the callback has been executed
                     //isCallbackExecuted = true;

@@ -77,6 +77,7 @@ public class Messages extends AppCompatActivity {
 
 
 
+
         // current userid
 
         fAuth = FirebaseAuth.getInstance();
@@ -106,6 +107,16 @@ public class Messages extends AppCompatActivity {
 
          */
 
+
+        recyclerview = findViewById(R.id.messagesRV);
+        recyclerview.setHasFixedSize(true);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
+
+        list = new ArrayList<>();
+        myAdapter = new MessageAdapter(this, list);
+        recyclerview.setAdapter(myAdapter);
+
+
         docRef = fStore.collection("Users").document(targetID);
 
         docRef.get()
@@ -116,7 +127,7 @@ public class Messages extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         // The document exists, retrieve the full name
-                         targetFullName = document.getString("email");
+                         targetFullName = document.getString("fullName");
                            fullnameMSGTV.setText(targetFullName);
                         // Do something with the full name
                         // ...
@@ -150,19 +161,14 @@ public class Messages extends AppCompatActivity {
                 message = new MessageModel(currentUID, targetID ,messageContent, currentTimeStamp );
                 sendMessage(message);
 
+
+
                 }
 
         });
 
         //call display messages method
 
-        recyclerview = findViewById(R.id.messagesRV);
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
-
-        list = new ArrayList<>();
-        myAdapter = new MessageAdapter(this, list);
-        recyclerview.setAdapter(myAdapter);
 
         listenForMessages();
 
@@ -194,17 +200,19 @@ public class Messages extends AppCompatActivity {
                 .add(message)
                 .addOnSuccessListener(documentReference -> {
                     // Message sent successfully
-                    messageET.setText(null);
+                    messageET.setText("");
                     Map<String, Object> userInfo = new HashMap<>();
 
                     userInfo.put("user1ID", currentUID);
                     userInfo.put("user2ID", targetID);
+                    userInfo.put("lastMessage", message.getMessageText());
                     /*
                     String[] participantsIDS = new String[] {currentUID,targetID};
                     userInfo.put("participantsIDS", participantsIDS);
 
                      */
                     chatMessagesRef.document(chatID).set(userInfo);
+                    myAdapter.notifyDataSetChanged();
                     //scrollToLastPosition();
                 })
                 .addOnFailureListener(e -> {
@@ -238,7 +246,6 @@ public class Messages extends AppCompatActivity {
 
                         MessageModel message = messageSnapshot.toObject(MessageModel.class);
                         list.add(message);
-
 
                     }
                     myAdapter.notifyDataSetChanged();
@@ -366,6 +373,7 @@ public class Messages extends AppCompatActivity {
         if (recyclerview.getAdapter() != null) {
             int lastPosition = recyclerview.getAdapter().getItemCount() - 1;
             recyclerview.scrollToPosition(lastPosition);
+            //myAdapter.notifyDataSetChanged();
         }
     }
 

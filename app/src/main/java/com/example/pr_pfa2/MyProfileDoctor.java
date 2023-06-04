@@ -66,6 +66,7 @@ public class MyProfileDoctor extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
+
             DocumentReference docRef = fStore.collection("Users").document(fAuth.getCurrentUser().getUid());
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override

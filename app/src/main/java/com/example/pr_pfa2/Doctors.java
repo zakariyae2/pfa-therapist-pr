@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +35,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class Doctors extends AppCompatActivity {
 
@@ -48,6 +53,8 @@ public class Doctors extends AppCompatActivity {
     String fullname;
     String phone;
     String Id;
+
+
 
 
 
@@ -129,7 +136,7 @@ public class Doctors extends AppCompatActivity {
                             list.add(doctor);
 
                             //order data based on rating
-                            //Collections.sort(list, (item1, item2) -> Float.compare(item2.getRating(), item1.getRating()));
+                            Collections.sort(list, (item1, item2) -> Float.compare(item2.getRating(), item1.getRating()));
 
                         }
                         // display the list of doctors in the RecyclerView
@@ -162,10 +169,43 @@ public class Doctors extends AppCompatActivity {
 
  */
 
+        //search for a doctor
+
+
+        EditText editTextS = findViewById(R.id.searchET);
+        editTextS.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s){
+                filter(s.toString());
+            }
+        });
 
 
 
+    }
 
+
+    //Filter list
+    public void filter(String text){
+        ArrayList <DoctorModel> filteredDoctorList = new ArrayList<>();
+
+        // check fullnames containing text entered in search edittext
+        for (DoctorModel doctor : list){
+            if(doctor.getFullName().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))){
+                filteredDoctorList.add(doctor);
+            }
+        }
+        myAdapter.filterList(filteredDoctorList);
     }
 
 

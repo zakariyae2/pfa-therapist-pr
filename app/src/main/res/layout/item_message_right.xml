@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="end"
+    android:gravity="center"
     android:layout_margin="5dp"
+
     >
 
                 <TextView
@@ -15,11 +16,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:layout_margin="4dp"
+                    android:layout_margin="10dp"
                     android:textSize="18dp"
                     android:background="@color/primary"
-                    android:layout_gravity="end"
-                    android:padding="5dp"
+
+                    android:padding="10dp"
+
                     />
                 <TextView
                     android:id="@+id/messagetimestampTV"
@@ -28,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:layout_margin="4dp"
-                    android:layout_gravity="end"
+
                     />
 
 

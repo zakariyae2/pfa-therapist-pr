@@ -5,6 +5,7 @@ public class AppointmentModel {
     private String emaildoc;
     private String emailpat;
     private String phone;
+    private String userID;
     private String date;
     private String hour;
     private String month;
@@ -14,11 +15,14 @@ public class AppointmentModel {
         // empty constructor required for Firestore deserialization
     }
 
-    public AppointmentModel(String fullName, String emaildoc, String emailpat, String phone) {
+    public AppointmentModel(String fullName, String emaildoc, String emailpat, String phone,String userID, String state, String hour) {
         this.fullName = fullName;
         this.emaildoc = emaildoc;
         this.emailpat = emailpat;
         this.phone = phone;
+        this.userID = userID;
+        this.state = state;
+        this.hour = hour;
     }
 
     public String getFullName() {
@@ -55,6 +59,14 @@ public class AppointmentModel {
 
     public String getDate() {
         return date;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public void setDate(String date) {
