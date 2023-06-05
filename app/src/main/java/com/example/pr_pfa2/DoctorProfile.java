@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DoctorProfile extends AppCompatActivity {
 
-    TextView fullnameTV, addressTV, cityTV, phonenumberTV, emailTV, aboutTV;
+    TextView fullnameTV, addressTV, cityTV, phonenumberTV, emailTV, aboutTV, ratingValue;
     ImageView backIV;
     RatingBar ratingbar;
     ImageView messageIV;
@@ -86,14 +86,16 @@ DoctorModel doctor;
         aboutTV = findViewById(R.id.qualificationsDPTV);
         cityTV = findViewById(R.id.cityDPTV);
         ratingbar = findViewById(R.id.ratingbarDPTV);
+        ratingValue = findViewById(R.id.ratingNumberTV);
 
         fullnameTV.setText(fullname);
         addressTV.setText(address);
         phonenumberTV.setText(phonenumber);
         emailTV.setText(email);
         aboutTV.setText(qualifications);
-        cityTV.setText(targetID);
+        cityTV.setText(city);
         ratingbar.setRating(rating);
+        ratingValue.setText(String.valueOf(rating));
 
 
         // show doctors info

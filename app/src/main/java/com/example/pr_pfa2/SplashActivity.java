@@ -39,6 +39,7 @@ public class SplashActivity extends AppCompatActivity {
                     checkRole(currentUser.getUid());
                 }else{
                     startActivity(new Intent(getApplicationContext(), Login.class));
+                    finish();
                 }
             }
         }, 3000);

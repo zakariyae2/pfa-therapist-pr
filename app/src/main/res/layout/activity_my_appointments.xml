@@ -12,6 +12,14 @@
         android:orientation="vertical"
         android:background="@color/white">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My appointments:"
+            android:textColor="@color/black"
+            android:layout_margin="5dp"
+            android:textStyle="bold"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_app_client"
             android:layout_width="match_parent"
