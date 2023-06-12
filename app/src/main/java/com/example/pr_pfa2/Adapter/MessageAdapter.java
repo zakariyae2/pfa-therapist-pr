@@ -1,8 +1,11 @@
 package com.example.pr_pfa2.Adapter;
 
+import static android.view.Gravity.END;
 import static android.view.Gravity.START;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +36,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     Context context;
     ArrayList<MessageModel> list;
     static MessageModel message;
+    View itemView;
 
 
     public interface OnItemClickListener {
@@ -51,14 +55,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView;
+
         //v = inflater.inflate(R.layout.item_message_right, parent, false);
 
 
             itemView = inflater.inflate(R.layout.item_message_right, parent, false);
 
-
         return new MyViewHolder(itemView);
+
 
 
     }
@@ -86,21 +90,33 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-                layoutParams.gravity = Gravity.END;
+
                 // Update the layout params for the text views in the view holder
+                //holder.linearLayoutRight.setLayoutParams(layoutParams);
                 holder.messageTV.setLayoutParams(layoutParams);
-                holder.messageTV.setLayoutParams(layoutParams);
+                holder.linearLayoutRight.setGravity(END);
+                //holder.messageTV.setBackgroundColor(Color.GREEN);
+                Drawable customBackground = context.getResources().getDrawable(R.drawable.background_msg_right);
+                holder.messageTV.setBackground(customBackground);
+                holder.messageTimestampTV.setGravity(END);
+                layoutParams.gravity = END;
+
             } else {
                 // Set layout params for the left-aligned message views
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-                layoutParams.gravity = Gravity.START;
+
                 // Update the layout params for the text views in the view holder
-                holder.linearLayoutRight.setLayoutParams(layoutParams);
+                //holder.linearLayoutRight.setLayoutParams(layoutParams);
                 holder.messageTV.setLayoutParams(layoutParams);
-                holder.messageTV.setBackgroundColor(R.color.silver);
+                holder.linearLayoutRight.setGravity(START);
+                //holder.messageTV.setBackgroundColor(Color.GRAY);
+                Drawable customBackground = context.getResources().getDrawable(R.drawable.background_msg_left);
+                holder.messageTV.setBackground(customBackground);
+                holder.messageTimestampTV.setGravity(START);
+                layoutParams.gravity = Gravity.START;
             }
         } else {
             // Handle the case when message or currentUser is null
@@ -128,6 +144,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             messageTV = itemView.findViewById(R.id.messageTV);
             messageTimestampTV = itemView.findViewById(R.id.messagetimestampTV);
             linearLayoutRight = itemView.findViewById(R.id.messageRLL);
+            linearLayoutLeft = itemView.findViewById(R.id.messageLLL);
 
 
 

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,9 +68,25 @@ public class RegisterDoctor extends AppCompatActivity {
         password = findViewById(R.id.et_passwordD);
         phoneNumber = findViewById(R.id.et_phonenumberD);
         address = findViewById(R.id.et_addressD);
-        city = spinnerCity.getSelectedItem().toString();
+        //city = spinnerCity.getSelectedItem().toString();
         qualifications = findViewById(R.id.et_qualificationsD);
         registerButton = findViewById(R.id.btn_registerD);
+
+        //Spinner spinner = findViewById(R.id.cities_spinner);
+
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                 city = parent.getItemAtPosition(position).toString();
+                // Use the selectedValue as needed
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle the case when nothing is selected
+            }
+        });
+
 
 
         registerButton.setOnClickListener(new View.OnClickListener() {

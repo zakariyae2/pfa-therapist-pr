@@ -30,6 +30,7 @@
             android:textSize="20dp"/>
 
       <EditText
+          android:id="@+id/searchET"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:minHeight="38dp"

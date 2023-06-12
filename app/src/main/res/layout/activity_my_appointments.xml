@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".My_patients">
-
-
+    tools:context=".MyAppointments">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/white">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,34 +20,8 @@
             android:layout_margin="5dp"
             android:textStyle="bold"/>
 
-        <!-- State -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select a state: "
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_margin="5dp"/>
-        <Spinner
-            android:id="@+id/states_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:layout_margin="5dp"
-            />
-
-        </LinearLayout>
-
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_app"
+            android:id="@+id/list_app_client"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -58,6 +31,5 @@
 
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

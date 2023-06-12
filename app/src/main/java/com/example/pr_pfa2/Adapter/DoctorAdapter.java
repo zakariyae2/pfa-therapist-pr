@@ -170,4 +170,10 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.MyViewHold
                     }
                 });
     }
+
+
+    public void filterList(ArrayList <DoctorModel> filteredList){
+        list = filteredList;
+        notifyDataSetChanged();
+    }
 }

@@ -21,7 +21,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,7 +111,8 @@
                             android:layout_gravity="center"
                             android:text="Appointment"
                             android:textColor="@color/black"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
 
 
                     </LinearLayout>
@@ -150,7 +151,8 @@
                             android:layout_gravity="center"
                             android:text="Doctors"
                             android:textColor="@color/black"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
 
 
                     </LinearLayout>
@@ -187,7 +189,8 @@
                             android:layout_gravity="center"
                             android:text="Profile"
                             android:textColor="@color/black"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
 
 
                     </LinearLayout>
@@ -195,7 +198,7 @@
 
                 <!-- Card for Blog -->
                 <RelativeLayout
-                    android:id="@+id/cardBlog"
+                    android:id="@+id/cardMyAppointments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -213,17 +216,17 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/blogger_b" />
+                            android:src="@drawable/ic_baseline_lock_clock_24" />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Blog"
+                            android:text="My Appointments"
                             android:textColor="@color/black"
-                            android:textStyle="bold" />
-
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
 
                     </LinearLayout>
                 </RelativeLayout>
@@ -254,7 +257,8 @@
                             android:layout_height="wrap_content"
                             android:text="Community"
                             android:textColor="@color/black"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
 
                     </LinearLayout>
                 </RelativeLayout>

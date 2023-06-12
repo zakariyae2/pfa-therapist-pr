@@ -149,28 +149,11 @@
                 android:textColor="@color/black"/>
         </LinearLayout>
 
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="2dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rating: "
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_margin="5dp"/>
-        <RatingBar
-            android:id="@+id/ratingbarDPTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_margin="5dp"
-            />
-
-    </LinearLayout>
-
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -186,6 +169,49 @@
             android:textColor="@color/black"/>
 
     </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ratingLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rating AND Reviews"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/ratingNumberTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.5"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_margin="5dp"/>
+
+            <RatingBar
+                android:id="@+id/ratingbarDPTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_margin="5dp"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

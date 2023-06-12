@@ -37,13 +37,15 @@ public class ContactModel {
 
     private String user1ID;
     private String User2ID;
+    private String lastMessage;
 
     public ContactModel() {
     }
 
-    public ContactModel(String user1ID, String user2ID) {
+    public ContactModel(String user1ID, String user2ID, String lastMessage) {
         this.user1ID = user1ID;
         this.User2ID = user2ID;
+        this.lastMessage = lastMessage;
     }
 
     public String getUser1ID() {
@@ -60,6 +62,14 @@ public class ContactModel {
 
     public void setUser2ID(String user2ID) {
         User2ID = user2ID;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 }
 

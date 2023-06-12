@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,8 +70,24 @@ public class RegisterClient extends AppCompatActivity {
         password = findViewById(R.id.et_passwordC);
         phoneNumber = findViewById(R.id.et_phonenumberC);
         address = findViewById(R.id.et_addressC);
-        city = spinnerCity.getSelectedItem().toString();
+        //city = spinnerCity.getSelectedItem().toString();
         registerButton = findViewById(R.id.btn_registerC);
+
+        //Spinner spinner = findViewById(R.id.cities_spinnerC);
+
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                city = parent.getItemAtPosition(position).toString();
+                // Use the selectedValue as needed
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle the case when nothing is selected
+            }
+        });
+
 
 
         registerButton.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -25,6 +26,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.zegocloud.uikit.prebuilt.call.config.ZegoNotificationConfig;
+import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationConfig;
+import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +46,8 @@ public class Client extends AppCompatActivity {
     BottomNavigationView bottomNav;
 
 
-    RelativeLayout doctors_card, profile_card,appointment_card;
+
+    RelativeLayout doctors_card, profile_card,appointment_card, myAppointments_card;
 
 
 
@@ -50,6 +55,8 @@ public class Client extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
+
+
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -68,6 +75,35 @@ public class Client extends AppCompatActivity {
 
             }
         });
+
+
+        //get current user fullname
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        String currentUserID = firebaseAuth.getCurrentUser().getUid();
+
+        db.collection("Users")
+                .document(currentUserID)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String fullName = documentSnapshot.getString("fullName");
+                        // Do something with the full name
+                        //System.out.println("Full Name: " + fullName);
+                        //start video Call service
+                        startService(FirebaseAuth.getInstance().getCurrentUser().getUid(), fullName);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Handle any errors
+                    System.out.println("Error retrieving full name: " + e.getMessage());
+                });
+
+
+
+
 
 
 
@@ -100,6 +136,17 @@ public class Client extends AppCompatActivity {
             }
         });
 
+
+        //goto MyAppointments Actiivty
+
+        myAppointments_card = findViewById(R.id.cardMyAppointments);
+
+        myAppointments_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MyAppointments.class));
+            }
+        });
 
 
         //goto messages activity
@@ -174,7 +221,36 @@ public class Client extends AppCompatActivity {
         });
 
 
+
+        //start videoCall Service
+        //startService(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        //startService("1");
+
+
     }
+
+
+
+    //start videoCall Service
+    public void startService(String userID, String fullname) {
+        Application application = getApplication(); // Android's application context
+        long appID = 1060828632;   // yourAppID
+        String appSign = "2e33564f73ba01f471f648122a3f65295dbb67e0fb5f6d79e2fdd96e94a6f3ac";  // yourAppSign
+        //String userID = ; // yourUserID, userID should only contain numbers, English characters, and '_'.
+        String userName = fullname;   // yourUserName
+
+        ZegoUIKitPrebuiltCallInvitationConfig callInvitationConfig = new ZegoUIKitPrebuiltCallInvitationConfig();
+        callInvitationConfig.notifyWhenAppRunningInBackgroundOrQuit = true;
+        ZegoNotificationConfig notificationConfig = new ZegoNotificationConfig();
+        notificationConfig.sound = "zego_uikit_sound_call";
+        notificationConfig.channelID = "CallInvitation";
+        notificationConfig.channelName = "CallInvitation";
+        ZegoUIKitPrebuiltCallInvitationService.init(getApplication(), appID, appSign, userID, userName, callInvitationConfig);
+    }
+
+
+
+
     /*
     public void rule(){
         fStore.collection("Mypatients").whereEqualTo("emailpat",userEmail2)
